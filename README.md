@@ -109,21 +109,25 @@ Once the server is running, you can access the interactive API documentation to 
   "document_id": "research_paper.pdf",
   "chunks_created": 42
 }
+```
 
-### 1. Upload a Document
-**Endpoint:** `POST /api/upload/`
+### 2. Query Document
+**Endpoint:** `POST /api/query/`
 * **Content-Type:** `multipart/form-data`
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- |
-| `file` | File | The PDF or Text document to analyze. |
+| `question` | String | document_question |
 | `user_id` | String | Unique identifier for the user session. |
+| `document_id` | String | Name of document from the /upload/ response |
+
 
 **Response:**
 ```json
 {
-  "success": true,
-  "message": "Document uploaded and processed successfully",
-  "document_id": "research_paper.pdf",
-  "chunks_created": 42
+    "success": true,
+    "original_query":"question",
+    "answer": "final_answer",
+    "generated_queries": "generated_queries",
+    "source_chunks": "len(retrieved_docs_list)"
 }
